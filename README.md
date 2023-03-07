@@ -6,6 +6,5 @@ The Age and Growth Program at the Alaska Fisheries Science Center is developing 
 
 Users should ensure they have a version of RStudio that supports Quarto and that TinyTeX is installed (to create PDFs).
 
-install.packages('tinytex')
-
-tinytex::install_tinytex()
+`install.packages('tinytex')`
+`tinytex::install_tinytex()`
