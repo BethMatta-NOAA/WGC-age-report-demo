@@ -2,7 +2,6 @@
 ##Summary data report
 
 library(tidyverse)
-library(readxl)
 library(FSA)
 library(patchwork)
 
@@ -63,7 +62,7 @@ overall.mean.diff = round(mean(trad.testing$diff_age, na.rm = TRUE),2)
 bubble.diag <- ggplot(trad.testing, aes(read_age, test_age)) +
   geom_abline(intercept=0, slope=1) +
   geom_smooth(method="gam", formula = y ~ s(x, bs='tp', k = 5),
-              size=1, linetype="dashed", color="red", fill="pink") +
+              linetype="dashed", color="red", fill="pink") +
   geom_count(color="black", fill="gray", shape=21) +
   coord_fixed(xlim = c(min(trad.testing$read_age, trad.testing$test_age), 
                        max(trad.testing$read_age, trad.testing$test_age)),
@@ -94,7 +93,7 @@ cv.mean.age <- trad.testing[!is.na(trad.testing$read_age),] %>%
 #Compare to historical data for same species
 PA.vs.age <- ggplot(hist.data.species, aes(ave_test_age, percent_agree)) +
   geom_smooth(method="gam", formula = y ~ s(x, bs='tp', k = 5),
-              size=1, color="lightblue", se=FALSE) +
+              color="lightblue", se=FALSE) +
   geom_point(color="gray50") +
   stat_ellipse(linetype="dashed", level=0.95) +
   stat_ellipse(level=0.99, geom="polygon", alpha=0.1) +
@@ -107,7 +106,7 @@ PA.vs.age <- ggplot(hist.data.species, aes(ave_test_age, percent_agree)) +
 
 CV.vs.age <- ggplot(hist.data.species, aes(ave_test_age, cv)) +
   geom_smooth(method="gam", formula = y ~ s(x, bs='tp', k = 5),
-              size=1, color="lightblue", se=FALSE) +
+              color="lightblue", se=FALSE) +
   geom_point(color="gray50") +
   stat_ellipse(linetype="dashed", level=0.95) +
   stat_ellipse(level=0.99, geom="polygon", alpha=0.1) +
@@ -173,8 +172,7 @@ vonBs <- vonB.bubble/vonB.bubble.wt + plot_layout(guides = "collect")
 
 #Distributions of length and age
 
-age.dist <- 
-  ggplot(data, aes(final_age)) +
+age.dist <- ggplot(data, aes(final_age)) +
   geom_histogram(binwidth=1, color="black", fill="#4287f5") +
   geom_vline(xintercept = median(data$final_age, na.rm = TRUE), color="black") +
   geom_vline(xintercept = mean(data$final_age, na.rm = TRUE), linetype="dashed", color="red") +
@@ -192,7 +190,4 @@ length.dist <- ggplot(data, aes(length)) +
   theme_bw()
 
 dist.plot <- age.dist/length.dist
-
-
-
 
