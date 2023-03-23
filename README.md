@@ -12,8 +12,20 @@ Prior to the demo, users should ensure they have a version of RStudio that suppo
 
 Users may also want to check to ensure they have the following packages (available from CRAN) installed prior to the demo.
 
+<<<<<<< HEAD
 `tidyverse`
 `FSA`
 `patchwork`
 `knitr`
 `kableExtra`
+=======
+tidyverse
+
+FSA
+
+patchwork
+
+knitr
+
+kableExtra
+>>>>>>> 09163c3043739d63a285961ce10831e7e8620d45
