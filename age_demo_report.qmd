@@ -1,6 +1,6 @@
 ---
 title: "Summary report - AFSC Age and Growth Progam data"
-format: pdf
+format: html
 editor: visual
 execute: 
   echo: false
