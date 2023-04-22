@@ -45,6 +45,7 @@ The information below describes results of paired age readings between a primary
 
 bowker <- summary(bias, what = "Bowker")
 evanshoenig <- summary(bias, what = "EvansHoenig")
+mcnemar <- summary(bias, what = "McNemar")
 
 ```
 
@@ -63,10 +64,11 @@ evanshoenig <- summary(bias, what = "EvansHoenig")
 |------------------|------------------|------------------|------------------|
 | Bowker's      | `r bowker["df"]`      | `r round(bowker["chi.sq"],2)`      | `r round(bowker["p"],2)`      |
 | Evans-Hoenig  | `r evanshoenig["df"]` | `r round(evanshoenig["chi.sq"],2)` | `r round(evanshoenig["p"],2)` |
+| McNemar       | `r mcnemar["df"]`     | `r round(mcnemar["chi.sq"],2)` |  `r round(mcnemar["p"],2)`        |
 
 : Tests of symmetry {#tbl-second}
 
-Bias statistics for the `r collection.name` collection. The null hypothesis of the Bowker's and Evans-Hoenig tests is that there is no asymmetry among cells off the diagonal of a cross-tabulation table.
+Bias statistics for the `r collection.name` collection. The null hypothesis of the tests is that there is no asymmetry among cells off the diagonal of a cross-tabulation table.
 :::
 
 ```{r}
@@ -92,7 +94,7 @@ kableExtra::kable(cont.table, row.names = TRUE,
 
 \
 
-```{r}
+```{r bias-plot}
 #| fig-cap: Bubble plot comparing age estimates between reader and tester of this collection. The solid diagonal line represents a 1:1 relationship. The red dashed line represents a fitted generalized additive model.
 #| fig-height: 6
 #| 
@@ -100,7 +102,7 @@ bubble.diag
 
 ```
 
-```{r}
+```{r cv-by-age}
 #| fig-cap: Mean CV by age group of this collection, with 95% confidence intervals. Red dashed line indicates overall mean CV for the collection.
 #| fig-width: 6.5
 #| 
@@ -110,7 +112,7 @@ cv.mean.age
 
 {{< pagebreak >}}
 
-```{r}
+```{r hist-agree}
 #| fig-cap: Comparison of reader agreement metrics between this collection (red point) and historical collections of the same species (gray points). Average test age versus percent agreement (top) and average CV (bottom). Dashed line and gray area indicate 95% and 99% confidence ellipses, respectively. Blue line indicates fitted generalized additive model. Points outside the ellipse but *above* the GAM in the case of percent agreement or *below* the GAM in the case of CV would still be desirable outcomes because they indicate better precision than expected for this species. Note that historical collections are summarized at the reader level, sometimes with multiple readers for a given year and cruise.
 #| fig-width: 6.5
 #| fig-height: 7
@@ -136,7 +138,7 @@ This section shows information pertaining to the full collection of `r unique(st
 
 \
 
-```{r}
+```{r weight-length}
 #| fig-cap: Observations of weight-at-length for males, females, and unsexed individuals.
 #| fig-width: 6.5
 #| 
@@ -146,7 +148,7 @@ lw.plot
 
 {{< pagebreak >}}
 
-```{r}
+```{r age-length-dist}
 #| fig-cap: Age (top) and length (bottom) distributions of fish aged by the AFSC Age and Growth Program. Dashed red line represents the mean, solid black line represents the median.
 #| fig-height: 6
 #| 
@@ -156,7 +158,7 @@ dist.plot
 
 {{< pagebreak >}}
 
-```{r}
+```{r vonB}
 #| fig-cap: Observations of length (top) and weight (bottom) at age with fitted von Bertalanffy growth functions for males and females.
 #| fig-width: 6.5
 #| fig-height: 8
